@@ -21,3 +21,13 @@ function getHeroList() {
 
 	return $heros;
 }
+
+
+function addHero($hero) {
+
+	$handle = fopen('../database/hero.csv', 'a');
+
+	fputcsv($handle, $hero, ';');
+
+	fclose($handle);
+}

@@ -1,0 +1,29 @@
+<?php include 'header.phtml' ?>
+
+<div id="main-container">
+	<h1>Liste des heros</h1>
+
+	<table>
+		<tr>
+			<td>Nom</td>
+			<td>Point de vie</td>
+			<td>Armure</td>
+			<td>Avatar</td>
+		</tr>
+	<?php foreach ($heros as $hero): ?>
+		<tr>
+			<?php
+				// équivalent à
+				// echo $hero[0] 
+			?>
+			<td><?= $hero[0] ?></td>
+			<td><?= $hero[1] ?></td>	
+			<td><?= $hero[2] ?></td>	
+			<td><img src="<?= $hero[3] ?>"></td>	
+		</tr>	
+	<?php endforeach; ?>
+	</table>
+
+</div>
+
+<?php include 'footer.phtml' ?>

@@ -25,9 +25,29 @@ function getHeroList() {
 
 function addHero($hero) {
 
-	$handle = fopen('../database/hero.csv', 'a');
+	// le formulaire a été reçu
+	$db = getConnection();
 
-	fputcsv($handle, $hero, ';');
+	$sql = "INSERT INTO hero (name, hp, armor, avatar) VALUES(:name, :hp, :armor, :avatar)";
 
-	fclose($handle);
+	$statement = $db->prepare($sql);
+
+	$statement->execute($hero);
+}
+
+
+function getConnection() {
+	$user = 'root';
+	$password = 'troiswa';
+
+	$db = new PDO(
+		'mysql:host=localhost;dbname=arena', 
+		$user, 
+		$password,
+		array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING)
+	);
+
+	$db->exec('SET NAMES UTF8');
+
+	return $db;
 }
